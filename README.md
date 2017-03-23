@@ -1,11 +1,15 @@
 # API-NoLoss
+所用到的相关知识
+SpringBoot 
+Mybatis
+Maven
 ## 开发文档
-### 几个声明
+### 首先声明
 数据返回格式均为JSON格式
 ```json
 {
-code:(int),
-msg:(string)
+	"code":"(int)",
+	"msg":"(string)"
 }
 ```
 ### 用户操作(/user)
