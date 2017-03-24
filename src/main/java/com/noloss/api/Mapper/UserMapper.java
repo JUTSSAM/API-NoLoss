@@ -1,6 +1,6 @@
-package com.noloss.Mapper;
+package com.noloss.api.Mapper;
 
-import com.noloss.Model.User;
+import com.noloss.api.Model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

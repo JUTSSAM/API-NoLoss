@@ -1,4 +1,4 @@
-package com.noloss.Model;
+package com.noloss.api.Model;
 
 /**
  * 用户

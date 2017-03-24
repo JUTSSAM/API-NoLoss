@@ -1,7 +1,7 @@
-package com.noloss.Controller;
+package com.noloss.api.Controller;
 
-import com.noloss.Mapper.UserMapper;
-import com.noloss.Model.User;
+import com.noloss.api.Mapper.UserMapper;
+import com.noloss.api.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

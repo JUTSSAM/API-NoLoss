@@ -1,7 +1,7 @@
-package com.noloss.Controller;
+package com.noloss.api.Controller;
 
-import com.noloss.Mapper.UserMapper;
-import com.noloss.Model.Status;
+import com.noloss.api.Mapper.UserMapper;
+import com.noloss.api.Model.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +33,15 @@ public class UserController{
             return new Status(200,"用户登陆成功");
         }
         return new Status(0,"用户名或密码错误");
+
+        /**
+         * 待实现
+         * 1.生成utoken功能
+         * 生成新的token返回并插入到数据库
+         * 2.Session功能
+         *
+         */
+
     }
 
 

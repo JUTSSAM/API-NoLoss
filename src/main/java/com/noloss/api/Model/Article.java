@@ -1,4 +1,6 @@
-package com.noloss.Model;
+package com.noloss.api.Model;
+
+import java.sql.Date;
 
 /**
  * 文章
@@ -10,6 +12,8 @@ public class Article {
     private String abstra;
     private String content;
     private String token;
+    private Date   createtime;
+    private Date   modifytime;
 
     public long getId() {
         return id;
@@ -49,5 +53,21 @@ public class Article {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Date getModifytime() {
+        return modifytime;
+    }
+
+    public void setModifytime(Date modifytime) {
+        this.modifytime = modifytime;
     }
 }
