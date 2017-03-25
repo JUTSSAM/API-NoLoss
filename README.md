@@ -19,18 +19,19 @@ Maven
 @param:user,pass,newpass
 
 ### 文章操作(/article)
-* 添加新的文章(add) __GET__
+* 获取文章列表(/list) __GET__
+@param:utoken
+* 获取回收站文章列表(/recycle) __GET__
+@param:utoken
+* 添加新的文章(/add) __GET__
 @param:title,abstra,
-* 根据文章id获取文章内容 __GET__
+* 根据文章id获取文章内容(/get) __GET__
 @prarm:utoken,id
-
-_此接口返回内容:_
-```json
-{
-  "id": 1,
-  "title": "1",
-  "abstra": "1",
-  "content": "1",
-  "token": "1"
-}
-```
+* 根据文章token获取文章内容(/Get) __GET__
+@param:utoken,token
+* 删除文章(/del) __DELETE__
+@param:token
+* 恢复文章(/recover) __GET__
+@param:token
+* 彻底删除文章(/redel) __DELETE__
+@param:token
