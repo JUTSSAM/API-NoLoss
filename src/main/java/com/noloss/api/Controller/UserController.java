@@ -2,8 +2,11 @@ package com.noloss.api.Controller;
 
 import com.noloss.api.Mapper.UserMapper;
 import com.noloss.api.Model.Status;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 /**
  * 关于用户的相关操作
@@ -18,6 +21,7 @@ public class UserController{
     @Autowired
     private UserMapper userMapper;
 
+    private static final Logger logger = LogManager.getLogger("UserController");
 
     /**
      * 用户登陆接口
@@ -26,10 +30,11 @@ public class UserController{
      * @param pass 密码
      * @return 用户登陆状态(json)
      */
-    @GetMapping("login")
+    @PostMapping("login")
     public Status login(@RequestParam(value = "user",defaultValue = "null") String user,@RequestParam(value = "pass",defaultValue = "null") String pass){
         Integer num = userMapper.findUser(user,pass);
         if (num > 0){
+            logger.info("["+user+"]登陆成功");
             return new Status(200,"用户登陆成功");
         }
         return new Status(0,"用户名或密码错误");
