@@ -1,8 +1,9 @@
 package com.noloss.api.Controller;
 
-import com.noloss.api.Mapper.UserMapper;
-import com.noloss.api.Model.User;
+import com.noloss.api.Model.Article;
+import com.noloss.api.Service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @Autowired
-    private UserMapper userMapper;
+    HelloService helloService;
 
     @RequestMapping("/find")
-    public User findByName() throws Exception {
-        User user = userMapper.findFirst(1);
-        return user;
+    @Cacheable(value = "Article")
+    public Article findByName() throws Exception {
+        Article article = helloService.DemoHello(1);
+        return article;
     }
 
 

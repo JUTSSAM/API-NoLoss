@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
  * 关于用户的相关操作
  * 1.用户登陆 login
  * 2.修改密码 resetPass
+ * 3.*注册功能
  */
 
 @RestController
