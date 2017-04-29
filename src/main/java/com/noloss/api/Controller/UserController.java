@@ -1,11 +1,14 @@
 package com.noloss.api.Controller;
 
-import com.noloss.api.Mapper.UserMapper;
-import com.noloss.api.Model.Status;
+import com.noloss.api.JsonFormat.Content;
+import com.noloss.api.JsonFormat.Status;
+import com.noloss.api.Service.UserService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.UnsupportedEncodingException;
 
 
 /**
@@ -20,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController{
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
 
     private static final Logger logger = LogManager.getLogger("UserController");
 
@@ -32,22 +35,21 @@ public class UserController{
      * @return 用户登陆状态(json)
      */
     @PostMapping("login")
-    public Status login(@RequestParam(value = "user",defaultValue = "null") String user,@RequestParam(value = "pass",defaultValue = "null") String pass){
-        Integer num = userMapper.findUser(user,pass);
-        if (num > 0){
+    public Status login(@RequestParam(value = "user",defaultValue = "null") String user,@RequestParam(value = "pass",defaultValue = "null") String pass) throws UnsupportedEncodingException {
+        if (userService.userCheck(user, pass) > 0){
+            String token = userService.updateStatus(user); //记录用户token及登录信息 return boolean
             logger.info("["+user+"]登陆成功");
-            return new Status(200,"用户登陆成功");
+            return new Status(200,new Content("登陆成功",token));
         }
-        return new Status(0,"用户名或密码错误");
+        return new Status(0,new Content("登陆失败",""));
 
         /**
          * 待实现
-         * 1.生成utoken功能
-         * 生成新的token返回并插入到数据库
-         * 2.Session功能
+         * 1.生成utoken功能 done
+         * 生成新的token返回并插入到数据库 done
+         * 2.Session功能 *
          *
          */
-
     }
 
 
@@ -60,23 +62,23 @@ public class UserController{
      * @return 修改状态信息
      */
     @PutMapping("resetPass")
-    public Status resetPass(@RequestParam(value = "user",defaultValue = "null") String user,@RequestParam(value = "pass",defaultValue = "null") String pass,@RequestParam(value = "newpass",defaultValue = "null") String newpass){
+    public Status resetPass(@RequestParam(value = "user",defaultValue = "null") String user,@RequestParam(value = "pass",defaultValue = "null") String pass,@RequestParam(value = "newpass",defaultValue = "null") String newpass) throws UnsupportedEncodingException {
 
         if (pass.equals(newpass)){
-            return new Status(0,"新密码与旧密码相同");
+            return new Status(0,new Content("新密码与旧密码相同",""));
         }
 
-        Integer num = userMapper.findUser(user,pass);
+        Integer num = userService.userCheck(user, pass);
         if (num <= 0){
-            return new Status(0,"用户不存在");
+            return new Status(0,new Content("用户不存在",""));
         }
 
-        num = userMapper.updatePass(user,newpass);
+        num = userService.userCheck(user, pass);
         if (num <= 0){
-            return new Status(0,"修改失败");
+            return new Status(0,new Content("修改失败",""));
         }
 
-        return new Status(200,"修改成功");
+        return new Status(200,new Content("修改成功",""));
     }
 
 }

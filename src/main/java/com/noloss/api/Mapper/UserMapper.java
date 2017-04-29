@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Mapper
 public interface UserMapper {
 
@@ -19,7 +22,7 @@ public interface UserMapper {
 
 
     /**
-     * 登陆用sql
+     * 验证用户存在
      * @param user 用户名
      * @param pass 密码
      * @return 符合用户数量
@@ -36,4 +39,9 @@ public interface UserMapper {
      */
     @Update("UPDATE noloss_users SET pass = #{newpass} WHERE user = #{user}")
     Integer updatePass(@Param("user") String user,@Param(("newpass")) String newpass);
+
+
+    @Update("UPDATE noloss_users SET token = #{token} , logTime = #{logTime}  WHERE user = #{user}")
+    Integer updateToken(@Param("user") String user,@Param(("token")) String token,@Param("logTime") Date logTime);
+
 }
