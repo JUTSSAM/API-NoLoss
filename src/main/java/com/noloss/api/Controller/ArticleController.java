@@ -138,10 +138,6 @@ public class ArticleController {
             System.out.println("id:"+id+"|title:"+title+"|modifytime:"+modifytime);
         }
         return articleList;
-
-        /*
-        * @TODO 从数据库拿出时间的时候时间精度丢失
-        * */
     }
 
     /**
