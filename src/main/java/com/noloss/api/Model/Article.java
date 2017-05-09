@@ -16,11 +16,38 @@ public class Article{
 
     private long id;
     private String title;
-    private String abstra;
     private String content;
-    private String token;
+    private String utoken;
     private Timestamp createtime;
     private Timestamp modifytime;
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setCreatetime(Timestamp createtime) {
+        this.createtime = createtime;
+    }
+
+    public void setModifytime(Timestamp modifytime) {
+        this.modifytime = modifytime;
+    }
+
+    public void setUtoken(String utoken) {
+        this.utoken = utoken;
+    }
+
+    public String getUtoken() {
+        return utoken;
+    }
 
     public long getId() {
         return id;

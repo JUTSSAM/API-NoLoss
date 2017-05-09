@@ -3,6 +3,7 @@ package com.noloss.api.Mapper;
 import com.noloss.api.JsonFormat.ArticleList;
 import com.noloss.api.Model.Article;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.StatementType;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -41,18 +42,22 @@ public interface ArticleMapper {
 
     /**
      * 添加新文章接口
-     * @param title 标题
-     * @param content 正文
-     * @param utoken 用户口令
-     * @param createtime 创建时间
-     * @param modifytime 修改时间
+     * @param article 文章對象
      * @return 修改行数
      */
-    @Insert("INSERT INTO noloss_articles (title,abstra,content,utoken,createtime,modifytime) VALUES(#{title},#{title},#{content},#{utoken},#{createtime},#{modifytime})")
-    Integer addArticle(@Param("title") String title, @Param("content") String content, @Param("utoken") String utoken, @Param("createtime") Timestamp createtime, @Param("modifytime") Timestamp modifytime);
+//    @Insert("INSERT INTO noloss_articles (title,abstra,content,utoken,createtime,modifytime) VALUES(#{title},#{title},#{content},#{utoken},#{createtime},#{modifytime})")
+//    @SelectKey(keyProperty = "id",before = false,resultType = Integer.class,statementType= StatementType.STATEMENT,statement="select max(id) from noloss_articles")
+//    long addArticle(@Param("title") String title, @Param("content") String content, @Param("utoken") String utoken, @Param("createtime") Timestamp createtime, @Param("modifytime") Timestamp modifytime);
+
+    @Insert("INSERT INTO noloss_articles (title,content,utoken,createtime,modifytime) VALUES(#{article.title},#{article.content},#{article.utoken},#{article.modifytime},#{article.modifytime})")
+    @SelectKey(keyProperty = "article.id",before = false,resultType = Integer.class,statementType= StatementType.STATEMENT,statement="SELECT LAST_INSERT_ID() AS id")
+    long addArticle(@Param("article") Article article);
 
     @Update("UPDATE noloss_articles SET title = #{title},content = #{content},modifytime = #{modifytime} WHERE utoken = #{utoken} and id = #{id}")
     Integer updateArticle(@Param("utoken") String utoken,@Param("id") long id,@Param("title") String title,@Param("content") String content,@Param("modifytime") Timestamp modifytime);
+
+
+
 
     /**
      * 删除/恢复/彻底删除 文章接口

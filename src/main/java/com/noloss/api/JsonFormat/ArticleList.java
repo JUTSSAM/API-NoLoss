@@ -16,12 +16,12 @@ import java.util.Date;
 public class ArticleList{
     private long id;
     private String title;
-    private String modifytime;
+    private long modifytime;
 
     public ArticleList(long id, String title, Date modifytime) {
 
         this.id = id;
         this.title = title;
-        this.modifytime = ""+modifytime.getTime();
+        this.modifytime = modifytime.getTime();
     }
 }
