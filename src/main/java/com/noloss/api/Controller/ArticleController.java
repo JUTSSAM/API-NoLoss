@@ -92,8 +92,9 @@ public class ArticleController {
      * @param utoken 文章token
      * @return status
      */
-    @DeleteMapping("del")
+    @PostMapping("del")
     public Msg delArticleByToken(@RequestParam("id") long id,@RequestParam("utoken") String utoken){
+        System.out.println("刪除數據："+id);
         Integer num = articleMapper.updateArticleStatus(utoken,id,-1);
         if (num > 0){
             return new Msg(200,1);
