@@ -23,6 +23,4 @@ public class HelloController {
         Article article = helloService.DemoHello(1);
         return article;
     }
-
-
 }
