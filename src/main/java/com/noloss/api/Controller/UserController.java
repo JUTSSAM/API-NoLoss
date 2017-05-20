@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
  * 关于用户的相关操作
  * 1.用户登陆 login
  * 2.修改密码 resetPass
- * 3.*注册功能
+ * 3.注册功能 register
  */
 
 @RestController
@@ -27,13 +27,7 @@ public class UserController{
 
     private static final Logger logger = LogManager.getLogger("UserController");
 
-    /**
-     * 用户登陆接口
-     * 使用get方法
-     * @param user 用户名
-     * @param pass 密码
-     * @return 用户登陆状态(json)
-     */
+    //用户登陆接口
     @PostMapping("login")
     public Status login(@RequestParam(value = "user",defaultValue = "null") String user,@RequestParam(value = "pass",defaultValue = "null") String pass) throws UnsupportedEncodingException {
         if (userService.userCheck(user, pass) > 0){
@@ -45,6 +39,7 @@ public class UserController{
 
         /**
          * 待实现
+         * @TODO Session功能
          * 1.生成utoken功能 done
          * 生成新的token返回并插入到数据库 done
          * 2.Session功能 *
@@ -52,13 +47,7 @@ public class UserController{
          */
     }
 
-    /**
-     * 用户修改密码接口
-     * @param user 用户名
-     * @param pass 旧密码
-     * @param newpass 新密码
-     * @return 修改状态信息
-     */
+    // 用户修改密码接口
     @PutMapping("resetPass")
     public Status resetPass(@RequestParam(value = "user",defaultValue = "null") String user,@RequestParam(value = "pass",defaultValue = "null") String pass,@RequestParam(value = "newpass",defaultValue = "null") String newpass) throws UnsupportedEncodingException {
 
@@ -86,7 +75,7 @@ public class UserController{
 
     // 检查邀请码
     @PostMapping("checkCode")
-    public Status checkCode(@RequestParam(value = "inviteCode",defaultValue = "null") String InviteCode)
+    private Status checkCode(@RequestParam(value = "inviteCode",defaultValue = "null") String InviteCode)
     {
         if (userService.checkInviteCode(InviteCode) > 0)
         {
