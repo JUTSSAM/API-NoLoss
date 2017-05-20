@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "跳轉到Noloss所在目錄"
+cd /d/works/J2EE/API-NoLoss/
+pwd
+echo "======= 開始編譯 ====="
+mvn clean package
+echo "======= 編譯結束 ====="
+echo "======= 開始向服務器傳送 ========="
+scp /d/works/J2EE/API-NoLoss/target/noloss-1.0-SNAPSHOT.jar root@139.199.37.173:/home/www/
+echo "======= 傳輸結束 ====="
+echo "連接服務器"
+ssh root@139.199.37.173

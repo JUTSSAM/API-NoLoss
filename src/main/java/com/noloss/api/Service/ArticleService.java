@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 public interface ArticleService {
     Article getArticleById(int id);
     ArticleList getArticleList(String utoken);
-
     Integer checkArticleExist(String utoken, long id);//检查文章是否存在
     Article createNewArticle(String utoken, long id, String title, String content, Timestamp modifytime);
     Article updateArticle(long id, String title, String content, Timestamp modifytime);

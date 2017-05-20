@@ -11,6 +11,10 @@ Lombok
 @param:user,pass
 * 修改密码接口(/resetPass) __PUT__
 @param:user,pass,newpass
+* 用户注册接口(/reg)  __POST__
+@param:user,pass,inviteCode
+* 获取用户邀请码接口(getInviteCode)  __POST__
+@param:token
 
 ### 文章操作(/article)
 * 获取文章列表(/list) __GET__

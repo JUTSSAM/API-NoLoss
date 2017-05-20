@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
  * 密码加密函数
  */
 public class Security {
+
     protected static String md5(String str) throws UnsupportedEncodingException {
         MessageDigest md5 = null;
         try {
