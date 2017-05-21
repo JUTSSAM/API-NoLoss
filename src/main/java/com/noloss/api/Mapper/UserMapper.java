@@ -38,7 +38,8 @@ public interface UserMapper {
     @Insert("INSERT INTO noloss_users(user,pass,nickname,inviteCode) VALUES (#{user},#{pass},#{user},#{inviteCode})")
     Integer addNewUser(@Param("user") String user,@Param("pass") String pass,@Param("inviteCode") String inviteCode);
 
-    //获取用户验证码
+    //根据token获取用户信息
     @Select("SELECT * FROM noloss_users WHERE token = #{token}")
-    User getInviteCode(@Param("token") String token);
+    User getUserInfo(@Param("token") String token);
+
 }

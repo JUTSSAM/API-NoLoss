@@ -1,5 +1,7 @@
 package com.noloss.api.Controller;
 
+import com.noloss.api.Model.User;
+import com.noloss.api.Service.UserService;
 import org.springframework.stereotype.Controller;
 import static java.lang.Math.random;
 

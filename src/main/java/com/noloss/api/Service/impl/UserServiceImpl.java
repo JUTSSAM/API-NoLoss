@@ -53,14 +53,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer userRegister(String username, String password) {
+    public Integer userRegister(String username, String password) throws UnsupportedEncodingException {
         CommonController commonController = new CommonController();
-        return userMapper.addNewUser(username,password,commonController.inviteCode(6));
+        return userMapper.addNewUser(username,Security.MD5encode(password),commonController.inviteCode(6));
     }
 
     @Override
-    public User getInviteCode(String token) {
-        return userMapper.getInviteCode(token);
+    public User getUserInfo(String token) {
+        return userMapper.getUserInfo(token);
     }
 
 

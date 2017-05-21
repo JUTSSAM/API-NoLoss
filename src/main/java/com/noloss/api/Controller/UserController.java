@@ -107,7 +107,8 @@ public class UserController{
     //获取用户验证码
     @RequestMapping("getInviteCode")
     public Status getInviteCode(@RequestParam(value = "token",defaultValue = "null") String token){
-        User user =  userService.getInviteCode(token);
+        System.out.println(token);
+        User user = userService.getUserInfo(token);
         if(user != null){
             return new Status(200,new Content(user.getInviteCode(),""));
         }

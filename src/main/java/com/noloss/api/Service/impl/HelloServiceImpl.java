@@ -19,7 +19,7 @@ public class HelloServiceImpl implements HelloService {
     @Override
     public Article DemoHello(int id) {
         Article article = new Article();
-        article = articleMapper.getArticleById(id, "1");
+        article = articleMapper.getArticleById(id, 1);
         return article;
     }
 }

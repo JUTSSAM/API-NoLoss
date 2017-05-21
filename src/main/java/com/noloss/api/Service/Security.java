@@ -1,5 +1,6 @@
 package com.noloss.api.Service;
 
+import com.noloss.api.Model.User;
 import sun.misc.BASE64Encoder;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -10,6 +11,8 @@ import java.security.NoSuchAlgorithmException;
  * 密码加密函数
  */
 public class Security {
+
+    private static UserService userService;
 
     protected static String md5(String str) throws UnsupportedEncodingException {
         MessageDigest md5 = null;
@@ -27,4 +30,5 @@ public class Security {
     public static String MD5encode(String Str) throws UnsupportedEncodingException {
         return md5(Str);
     }
+
 }

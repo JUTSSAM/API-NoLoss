@@ -16,6 +16,6 @@ public interface UserService {
     String  updateStatus(String user) throws UnsupportedEncodingException;
     Integer checkInviteCode(String code);
     Integer checkUserDuplication(String user);
-    Integer userRegister(String user,String pass);
-    User getInviteCode(String token);
+    Integer userRegister(String user,String pass) throws UnsupportedEncodingException;
+    User    getUserInfo(String token);
 }
